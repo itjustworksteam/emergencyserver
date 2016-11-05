@@ -1,0 +1,7 @@
+os: ubuntu14
+language: swiftenv
+script:
+  - swiftenv install 3.0
+  - swiftenv global 3.0
+  - swift build
+  - swift build -c release
