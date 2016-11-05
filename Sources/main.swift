@@ -22,7 +22,7 @@ drop.get("/api/", String.self, String.self) { request, latitude, longitude in
 }
 
 drop.get("/api") { _ in
-    return "TODO: fare pagina per spiegare api"
+    return try drop.view.make("api.html")
 }
 
 drop.run()
