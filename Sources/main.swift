@@ -20,7 +20,7 @@ drop.get("/api/", String.self, String.self) { request, latitude, longitude in
     if let countrycode = response.data["countrycode"]?.string {
         return DataSource().getCountryWithID(countryCode: countrycode)
     }
-    return "not found"
+    return "{\"error\":\"Sorry cannot get your location. Retry!\"}"
 }
 
 drop.get("/api") { _ in
