@@ -11,6 +11,10 @@ drop.get("/api/", String.self) { request, countryCode in
     return DataSource().getCountryWithID(countryCode: countryCode)
 }
 
+drop.get("/api/all") { _ in 
+    return DataSource().getAll()
+}
+
 drop.get("/api/", String.self, String.self) { request, latitude, longitude in
     let response = try drop.client.get("http://scatter-otl.rhcloud.com/location?lat=\(latitude)&long=\(longitude)")
     if let countrycode = response.data["countrycode"]?.string {

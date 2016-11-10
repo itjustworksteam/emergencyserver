@@ -27,7 +27,19 @@ class DataSource {
         return result.makeJson()
     }
     
-    let APIVersion = 0.3
+    func getAll() -> String {
+        var output = "["
+        for i in 0..<source.count {
+            output += source[i].makeJson()
+            if i == (source.count - 1) {
+                
+            } else {
+                output += ","
+            }
+        }
+        output += "]"
+        return output
+    }
     
     let source = [Country(name: "Afghanistan", code: "AF", police: "119", medical: "119", fire: "112").self,
                   Country(name: "Albania", code: "AL", police: "129", medical: "127", fire: "128").self,
