@@ -7,4 +7,4 @@ ADD . /vapor
 EXPOSE 8080
 RUN swift build
 
-CMD .build/debug/emergencyserver
+CMD .build/debug/App

@@ -16,9 +16,9 @@ extension Country {
     }
 }
 
-class DataSource {
+public class DataSource {
     
-    func getCountryWithID(countryCode: String) -> String {
+    public func getCountryWithID(countryCode: String) -> String {
         let uppercasedCountryCode = countryCode.uppercased()
         let country = source.filter { $0.code == uppercasedCountryCode }
         guard let result = country.first else {
@@ -27,7 +27,11 @@ class DataSource {
         return result.makeJson()
     }
     
-    func getAll() -> String {
+    public init() {
+    
+    }
+    
+    public func getAll() -> String {
         var output = "["
         for i in 0..<source.count {
             output += source[i].makeJson()
