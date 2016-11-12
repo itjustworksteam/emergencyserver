@@ -4,4 +4,5 @@ script:
   - swiftenv install 3.0
   - swiftenv global 3.0
   - swift build
+  - swift test
   - swift build -c release
