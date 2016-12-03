@@ -1,4 +1,4 @@
-class City {
+public class City {
     
     private var latitude: Double
     private var longitude: Double
@@ -19,7 +19,19 @@ class City {
         self.code = code
     }
     
-    func makeJson() -> String {
+    public func getCode() -> String {
+        return self.code != nil ? self.code! : "not found"
+    }
+    
+    public func getName() -> String {
+        return self.name != nil ? self.name! : "not found"
+    }
+    
+    public func getAsciiName() -> String {
+        return self.asciiname != nil ? self.asciiname! : "not found"
+    }
+    
+    public func makeJson() -> String {
         if self.name != nil && self.asciiname != nil && self.code != nil {
             return "{\"name\": \"\(self.name!)\", \"asciiname\": \"\(self.asciiname!)\", \"code\": \"\(self.code!)\", \"latitude\": \"\(self.latitude)\", \"longitude\": \"\(self.longitude)\"}"
         }

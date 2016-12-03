@@ -16,7 +16,7 @@ class LocationTests: XCTestCase {
     
     func testCityConstructor() {
         let _ = City(latitude: 1.0, longitude: 1.0)
-        let city = City(latitude: 1.0, longitude: 1.0, name: "Name", asciiname: "Name", code: "IT")
+        let _ = City(latitude: 1.0, longitude: 1.0, name: "Name", asciiname: "Name", code: "IT")
     }
     
     func testJSONCity() {
@@ -41,7 +41,14 @@ class LocationTests: XCTestCase {
     
     func testClosestCity() {
         let myPosition = Location(latitude: 45.650433, longitude: 9.197645)
-        XCTAssertEqual(myPositionOutput(), myPosition.getClosestCity(), "should be equals")
+        XCTAssertEqual(myPositionOutput(), myPosition.getClosestCity().makeJson(), "should be equals")
+    }
+    
+    func testPublicCity() {
+        let city = City(latitude: 1.0, longitude: 1.0, name: "Milan", asciiname: "Milan", code: "IT")
+        XCTAssertEqual("IT", city.getCode(), "should be equals")
+        XCTAssertEqual("Milan", city.getName())
+        XCTAssertEqual("Milan", city.getAsciiName())
     }
     
     private func myPositionOutput() -> String {
@@ -62,7 +69,8 @@ class LocationTests: XCTestCase {
             ("testUtils", testUtils),
             ("testCityConstructor", testCityConstructor),
             ("testDistanceToCity", testDistanceToCity),
-            ("testLocation", testLocation)
+            ("testLocation", testLocation),
+            ("testClosestCity", testClosestCity)
         ]
     }
 

@@ -24,6 +24,14 @@ drop.get("/api/", String.self, String.self) { request, latitude, longitude in
     return "{\"error\":\"Sorry cannot get your location. Retry!\"}"
 }
 
+drop.get("/api/v2/location/", String.self, String.self) { request, latitude, longitude in
+    if let lat = Double(latitude), let lon = Double(longitude) {
+        let city = Location(latitude: lat, longitude: lon).getClosestCity()
+        return DataSource().getCountryWithID(countryCode: city.getCode())
+    }
+    throw Abort.custom(status: .badRequest, message: "Please provide real location")
+}
+
 drop.get("/api") { _ in
     return try drop.view.make("api.html")
 }

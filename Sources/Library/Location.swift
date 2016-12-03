@@ -1,27 +1,44 @@
-class Location {
+public class Location {
     
     private var location: City
     private var closestCity: City?
+    private var sources = [City]()
     
     init(location: City) {
         self.location = location
+        self.populateSourcesArrayFromDatabase()
     }
     
-    init(latitude: Double, longitude: Double) {
+    public init(latitude: Double, longitude: Double) {
         self.location = City(latitude: latitude, longitude: longitude)
+        self.populateSourcesArrayFromDatabase()
     }
     
-    func getClosestCity() -> String {
+    public func getClosestCity() -> City {
         var minimalDistance = 123456789.0
         var distance: Double
-        for i in 0..<source.count {
-            distance = self.location.distanceToCity(city: source[i])
-            if distance < minimalDistance {
-                minimalDistance = distance
-                self.closestCity = source[i]
+        if self.sources.count > 0 {
+            for i in 0..<sources.count {
+                distance = self.location.distanceToCity(city: sources[i])
+                if distance < minimalDistance {
+                    minimalDistance = distance
+                    self.closestCity = sources[i]
+                }
+            }
+        } else {
+            for i in 0..<source.count {
+                distance = self.location.distanceToCity(city: source[i])
+                if distance < minimalDistance {
+                    minimalDistance = distance
+                    self.closestCity = source[i]
+                }
             }
         }
-        return self.closestCity != nil ? self.closestCity!.makeJson() : "not found"
+        return self.closestCity!
+    }
+    
+    private func populateSourcesArrayFromDatabase() {
+        // working on it
     }
     
     private
