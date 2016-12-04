@@ -9,9 +9,8 @@ public class Location {
         self.populateSourcesArrayFromDatabase()
     }
     
-    public init(latitude: Double, longitude: Double) {
-        self.location = City(latitude: latitude, longitude: longitude)
-        self.populateSourcesArrayFromDatabase()
+    public convenience init(latitude: Double, longitude: Double) {
+        self.init(location: City(latitude: latitude, longitude: longitude))
     }
     
     public func getClosestCity() -> City {

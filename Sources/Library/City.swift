@@ -11,9 +11,8 @@ public class City {
         self.longitude = longitude
     }
     
-    init(latitude: Double, longitude: Double, name: String, asciiname: String, code: String) {
-        self.latitude = latitude
-        self.longitude = longitude
+    convenience init(latitude: Double, longitude: Double, name: String, asciiname: String, code: String) {
+        self.init(latitude: latitude, longitude: longitude)
         self.name = name
         self.asciiname = asciiname
         self.code = code
