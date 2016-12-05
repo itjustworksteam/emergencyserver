@@ -51,6 +51,15 @@ class LocationTests: XCTestCase {
         XCTAssertEqual("Milan", city.getAsciiName())
     }
     
+    func testMinMaxValuesForQueryDatabase() {
+        // implementare correttamente questo test e il metodo
+        let values = Location.returnResults(latitude: 1.0, longitude: 1.0)
+        XCTAssertEqual(1.0, values.minLat)
+        XCTAssertEqual(1.0, values.maxLat)
+        XCTAssertEqual(1.0, values.minLon)
+        XCTAssertEqual(1.0, values.maxLon)
+    }
+    
     private func myPositionOutput() -> String {
         return "{\"name\": \"Milan\", \"asciiname\": \"Milan\", \"code\": \"IT\", \"latitude\": \"45.463688\", \"longitude\": \"9.188141\"}"
     }
@@ -70,7 +79,9 @@ class LocationTests: XCTestCase {
             ("testCityConstructor", testCityConstructor),
             ("testDistanceToCity", testDistanceToCity),
             ("testLocation", testLocation),
-            ("testClosestCity", testClosestCity)
+            ("testClosestCity", testClosestCity),
+            ("testPublicCity", testPublicCity),
+            ("testMinMaxValuesForQueryDatabase", testMinMaxValuesForQueryDatabase)
         ]
     }
 

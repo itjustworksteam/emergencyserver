@@ -48,6 +48,10 @@ public class Location {
         return self.closestCity!
     }
     
+    static func returnResults(latitude: Double, longitude: Double) -> (minLat: Double, maxLat: Double, minLon: Double, maxLon: Double) {
+        return (1.0, 1.0, 1.0, 1.0)
+    }
+    
     private func populateSourcesArrayFromDatabase() throws {
         if let db = self.mysql {
             let results = try db.execute("CALL closest_cities(45.0, 9.0);") // non funziona da qua ma sul database va, ritorna un insieme vuoto quando in realta non e vero!!!
