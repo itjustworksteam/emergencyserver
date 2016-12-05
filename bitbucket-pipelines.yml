@@ -8,6 +8,5 @@ pipelines:
           - apt-get install -y libmysqlclient18 libmysqlclient-dev &&
           - swiftenv install 3.0
           - swiftenv global 3.0
-          - swift build
+          - swift build -Xswiftc -I/usr/local/mysql/include -Xlinker -L/usr/local/mysql/lib -Xswiftc -DNOJSON
           - swift test
-          - swift build -c release
