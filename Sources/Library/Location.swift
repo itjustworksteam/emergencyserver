@@ -49,14 +49,18 @@ public class Location {
     }
     
     static func returnResults(latitude: Double, longitude: Double) -> (minLat: Double, maxLat: Double, minLon: Double, maxLon: Double) {
-        return (1.0, 1.0, 1.0, 1.0)
+        let interval = 0.5
+        let minLat = latitude - interval
+        let maxLat = latitude + interval
+        let minLon = longitude - interval
+        let maxLon = longitude + interval
+        return (minLat, maxLat, minLon, maxLon)
     }
     
     private func populateSourcesArrayFromDatabase() throws {
         if let db = self.mysql {
-            let results = try db.execute("CALL closest_cities(45.0, 9.0);") // non funziona da qua ma sul database va, ritorna un insieme vuoto quando in realta non e vero!!!
-            // oppure implementare tale funzione in swift e far eseguire da qua solo la select
-            print(results)
+            let values = Location.returnResults(latitude: self.location.getLatitude(), longitude: self.location.getLongitude())
+            let results = try db.execute("SELECT * FROM location WHERE latitude BETWEEN ? AND ? AND longitude BETWEEN ? AND ?", [values.minLat, values.maxLat, values.minLon, values.maxLon])
             for result in results {
                 self.sources.append(City(latitude: (result["latitude"]?.double!)!, longitude: (result["longitude"]?.double!)!, name: (result["name"]?.string!)!, asciiname: (result["asciiname"]?.string!)!, code: (result["countrycode"]?.string!)!))
             }

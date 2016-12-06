@@ -50,8 +50,7 @@ struct DataBase {
 drop.get("/api/v2/location/", String.self, String.self) { request, latitude, longitude in
     if let lat = Double(latitude), let lon = Double(longitude) {
         let city = Location(latitude: lat, longitude: lon).usingDatabase(host: DataBase.Host, user: DataBase.User, password: DataBase.Password, database: DataBase.Database).getClosestCity()
-        //return DataSource().getCountryWithID(countryCode: city.getCode())
-        return city.makeJson()
+        return DataSource().getCountryWithID(countryCode: city.getCode())
     }
     throw Abort.custom(status: .badRequest, message: "Please provide real location")
 }

@@ -54,10 +54,16 @@ class LocationTests: XCTestCase {
     func testMinMaxValuesForQueryDatabase() {
         // implementare correttamente questo test e il metodo
         let values = Location.returnResults(latitude: 1.0, longitude: 1.0)
-        XCTAssertEqual(1.0, values.minLat)
-        XCTAssertEqual(1.0, values.maxLat)
-        XCTAssertEqual(1.0, values.minLon)
-        XCTAssertEqual(1.0, values.maxLon)
+        XCTAssertEqual(0.5, values.minLat)
+        XCTAssertEqual(1.5, values.maxLat)
+        XCTAssertEqual(0.5, values.minLon)
+        XCTAssertEqual(1.5, values.maxLon)
+    }
+    
+    func testLatitudeAndLongitudeForCity() {
+        let city = City(latitude: 1.0, longitude: 1.0)
+        XCTAssertEqual(1.0, city.getLatitude())
+        XCTAssertEqual(1.0, city.getLongitude())
     }
     
     private func myPositionOutput() -> String {
@@ -81,7 +87,8 @@ class LocationTests: XCTestCase {
             ("testLocation", testLocation),
             ("testClosestCity", testClosestCity),
             ("testPublicCity", testPublicCity),
-            ("testMinMaxValuesForQueryDatabase", testMinMaxValuesForQueryDatabase)
+            ("testMinMaxValuesForQueryDatabase", testMinMaxValuesForQueryDatabase),
+            ("testLatitudeAndLongitudeForCity", testLatitudeAndLongitudeForCity)
         ]
     }
 

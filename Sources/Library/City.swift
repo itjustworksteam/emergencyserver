@@ -30,6 +30,14 @@ public class City {
         return self.asciiname != nil ? self.asciiname! : "not found"
     }
     
+    public func getLatitude() -> Double {
+        return self.latitude
+    }
+    
+    public func getLongitude() -> Double {
+        return self.longitude
+    }
+    
     public func makeJson() -> String {
         if self.name != nil && self.asciiname != nil && self.code != nil {
             return "{\"name\": \"\(self.name!)\", \"asciiname\": \"\(self.asciiname!)\", \"code\": \"\(self.code!)\", \"latitude\": \"\(self.latitude)\", \"longitude\": \"\(self.longitude)\"}"
