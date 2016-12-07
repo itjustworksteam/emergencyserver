@@ -10,6 +10,5 @@ install:
 script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then swiftenv install 3.0 ; fi
   - swiftenv global 3.0
-  - swift build
-  - swift test
-  - swift build -c release
+  - swift build -Xswiftc -I/usr/local/mysql/include -Xlinker -L/usr/local/mysql/lib -Xswiftc -DNOJSON
+  - swift test -Xswiftc -I/usr/local/mysql/include -Xlinker -L/usr/local/mysql/lib -Xswiftc -DNOJSON
