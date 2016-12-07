@@ -1,1 +1,1 @@
-web: App --config:servers.http.port=$PORT
+web: App --workdir=./ --config:servers.http.port=$PORT
