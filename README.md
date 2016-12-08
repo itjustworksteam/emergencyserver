@@ -1,5 +1,7 @@
 # Emergency Numbers Server #
 
+[![Build Status](https://travis-ci.org/itjustworksteam/emergencyserver.svg?branch=master)](https://travis-ci.org/itjustworksteam/emergencyserver)
+
 ## API ##
 
 GET ```/api/:countryCode```
