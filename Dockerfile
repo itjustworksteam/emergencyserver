@@ -5,4 +5,5 @@ WORKDIR /vapor
 ADD . /vapor
 EXPOSE 80
 RUN swift build -Xswiftc -I/usr/local/mysql/include -Xlinker -L/usr/local/mysql/lib -Xswiftc -DNOJSON
+RUN swift test -Xswiftc -I/usr/local/mysql/include -Xlinker -L/usr/local/mysql/lib -Xswiftc -DNOJSON
 CMD .build/debug/App --workdir=./ --config:servers.http.port=80
