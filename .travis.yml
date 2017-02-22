@@ -1,20 +1,26 @@
 os:
-  - linux
+- linux
 language: generic
 sudo: required
 dist: trusty
 services:
-  - docker
+- docker
 install:
-  - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/02090c7ede5a637b76e6df1710e83cd0bbe7dcdf/swiftenv-install.sh)"
+- eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/02090c7ede5a637b76e6df1710e83cd0bbe7dcdf/swiftenv-install.sh)"
 script:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then swiftenv install 3.0 ; fi
-  - swiftenv global 3.0
-  - swift build -Xswiftc -I/usr/local/mysql/include -Xlinker -L/usr/local/mysql/lib -Xswiftc -DNOJSON
-  - swift test -Xswiftc -I/usr/local/mysql/include -Xlinker -L/usr/local/mysql/lib -Xswiftc -DNOJSON
-  - docker build -t therickys93/emergencyserver .
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then swiftenv install 3.0 ; fi
+- swiftenv global 3.0
+- swift build -Xswiftc -I/usr/local/mysql/include -Xlinker -L/usr/local/mysql/lib
+  -Xswiftc -DNOJSON
+- swift test -Xswiftc -I/usr/local/mysql/include -Xlinker -L/usr/local/mysql/lib -Xswiftc
+  -DNOJSON
+- docker build -t therickys93/emergencyserver .
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push therickys93/emergencyserver;
-    fi
+- if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+  docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; docker
+  push therickys93/emergencyserver; fi
+deploy:
+  provider: heroku
+  app: emergency-server
+  api_key:
+    secure: BLsMRE25znOKlEwiXYcVdpkpO0dVSrH1Q7BFu58TvCwWoN00ZQuUQYKLP+EJt54WMVF4FR7YqsGmMDjL/7VVs0k0bDnb1aPHPMkYvxksS9Rg+lRKI3QPC1zAWQus0JpwxgKlgF/eNV4FA5Yfw7qSF8g6oIrMyF26JQ3mIbI6kEjnG5Kux4aqGaPVvUHiOyFHFOA1IWUXyXwWhwXyWe6GIjIjhumWOmhkxYcTUjkstqe07BKt/705if93UF+ddRtkr7aMDGD+yxtaHYYUT0xf0eXNCDJqnwrWOjiR+cLhSvHQN9xC3sJgZKUjKkr/5CUJ9USl2s+4yXcxiv4AlvMEcwvPBXLLJiewrULpz12kbBG5vggpmqgc3uYz89J0eaaxrMLkeyQKg0UDJRkl4m2rm6Byj4lhONJ10alz+SrYZINRVZoqZ/JYbyBV8qQU2Yk/QXt7KqefkyMrpREKuDA/R1WausZaLKCXObPZHe8Ut+Md68lX9crqJUTMQ1zZx4UOtclXXbtFV7G16Atya2TNX5YT93WQ4N0EyS35z754zBcmDOaxqAN7/GYlL7yEPWMelkX3/VZVPUOVBJs/6oZ+BnXYoxM8/4gDdA8agW3MvX8JRIo0ljw5cWLVkQKGCl/SPaeVqJvfEfdi5SSiaYXBL9ioShufXkGYqwEvXDPCLtI=
