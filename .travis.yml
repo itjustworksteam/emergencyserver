@@ -19,10 +19,3 @@ after_success:
 - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; docker
   push therickys93/emergencyserver; fi
-deploy:
-  provider: heroku
-  api_key:
-    secure: V8Ei/3JjCRgig5XxEX3YkuSAE7JL5dkV10E/5LikhLxSN2aAz1WsskV2Y9NYL+advP/sZXZLmbb2gGQob9zbyyqLj5RUljbQiwskz8Ub1m8z/wkZtVx/FhEEhaLy9e0+nsnXOZK0/nwTVEwT5qr3ZZf9yBnZZmZY/xfGQT7U/JjmwyKfyHOmRTflIdeHQ/N8uLFWmsDJ+8RLSPKHD40yhYmAQwvf8WzISPwdFe1ylY4aLaz7mxPArBnyq1xUku2QsvCgqvzxcASydQXsCWtPS1w5EwRwhXGOM+eNCVbp4EMfgXinudk9FMnl3vHwWRV7C9QrqVzR7/fLUDuOr+TmPMILJ4h4Oj1UkgzwoVU5fSnfybhLvNwfoX64xu7hHWSgbXnbiNVie/TOD730NeDb8xirMrsYkUbF9gRgFaVLzc2DHRTq/lmHcchZdZM3sVJCFIueV3l9xhwonSj/AY33PTCratb84jIlB5joENm7xxNPJuC9yMEM8zq8GzlXzVZYLhF0sockVl7oGLmbu/eMVEdnoGIq4Ajh/GvMQQZNOlnXWZ10C1j4AutHuntmxbXMPlte/hxXwVwzhFoWG6cOJNgrSZ3Nklw1NKHx3TGtvMI437q8qxcRJps8HFZ+JqeROHn9qGIOGoLmWbJtcvz1VVUEpsid/6w+gFulhJRQREY=
-  app: emergency-server
-  on:
-    repo: itjustworksteam/emergencyserver
