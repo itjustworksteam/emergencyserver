@@ -17,7 +17,7 @@ extension Country {
 
 public class DataSource {
     
-    public func getCountryWithID(countryCode: String) -> String {
+    public func getCountryWithCountryCode(_ countryCode: String) -> String {
         let uppercasedCountryCode = countryCode.uppercased()
         let country = source.filter { $0.code == uppercasedCountryCode }
         guard let result = country.first else {

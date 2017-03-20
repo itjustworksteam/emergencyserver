@@ -18,14 +18,16 @@ final class ApiVersioneOneController {
     
     // MARK: /api/:country
     func getWithCountryCode(request: Request, country: String) throws -> ResponseRepresentable {
-        return DataSource().getCountryWithID(countryCode: country)
+        return DataSource().getCountryWithCountryCode(country)
     }
+    
+    // http://scatter-otl.rhcloud.com/location?lat=45.650433&long=9.197645
     
     // MARK: /api/:latitude/:longitude
     func getWithLatitudeAndLongitude(request: Request, latitude: String, longitude: String) throws -> ResponseRepresentable {
         let response = try drop.client.get("http://scatter-otl.rhcloud.com/location?lat=\(latitude)&long=\(longitude)")
         if let countrycode = response.data["countrycode"]?.string {
-            return DataSource().getCountryWithID(countryCode: countrycode)
+            return DataSource().getCountryWithCountryCode(countrycode)
         }
         return "{\"error\":\"Sorry cannot get your location. Retry!\"}"
     }

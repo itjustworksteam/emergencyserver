@@ -8,18 +8,18 @@ class DataSourceTests: XCTestCase {
 	}
     
     func testGetNumbersFromCountryCode() {
-        let response = DataSource().getCountryWithID(countryCode: "it")
+        let response = DataSource().getCountryWithCountryCode("it")
         XCTAssertEqual(response, "{\"name\":\"Italy\", \"code\":\"IT\", \"police\":\"113\", \"medical\":\"118\", \"fire\":\"115\"}")
     }
     
     func testGetNumbersFromCountryCodeError() {
-        let response = DataSource().getCountryWithID(countryCode: "hj")
+        let response = DataSource().getCountryWithCountryCode("hj")
         XCTAssertEqual(response, "{\"error\":\"No country found with the given 2-letter country code hj\"}")
     }
     
     func testEqualResponseForCountryInUpperOrLowerCase() {
-        let uppercase = DataSource().getCountryWithID(countryCode: "IT")
-        let lowercase = DataSource().getCountryWithID(countryCode: "it")
+        let uppercase = DataSource().getCountryWithCountryCode("IT")
+        let lowercase = DataSource().getCountryWithCountryCode("it")
         XCTAssertEqual(uppercase, lowercase)
     }
     
