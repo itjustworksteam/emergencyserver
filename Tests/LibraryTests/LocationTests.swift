@@ -14,6 +14,7 @@ class LocationTests: XCTestCase {
         XCTAssertEqualWithAccuracy(1.0, Utils.disgeod(latA: 1.0, lonA: 1.0, latB: 1.0, lonB: 1.0), accuracy: 1, "should be equals")
     }
     
+    /*
     func testCityConstructor() {
         let _ = City(latitude: 1.0, longitude: 1.0)
         let _ = City(latitude: 1.0, longitude: 1.0, name: "Name", asciiname: "Name", code: "IT")
@@ -77,11 +78,12 @@ class LocationTests: XCTestCase {
     private func cityWithNoNameJsonResponse() -> String {
         return "{\"latitude\": \"45.463688\", \"longitude\": \"9.188141\"}"
     }
-    
+    */
     static var allTests: [(String, (LocationTests) -> () throws -> Void)] {
         return [
             ("testConstants", testConstants),
             ("testUtils", testUtils),
+            /*
             ("testCityConstructor", testCityConstructor),
             ("testDistanceToCity", testDistanceToCity),
             ("testLocation", testLocation),
@@ -89,6 +91,7 @@ class LocationTests: XCTestCase {
             ("testPublicCity", testPublicCity),
             ("testMinMaxValuesForQueryDatabase", testMinMaxValuesForQueryDatabase),
             ("testLatitudeAndLongitudeForCity", testLatitudeAndLongitudeForCity)
+             */
         ]
     }
 

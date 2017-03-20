@@ -1,3 +1,4 @@
+/*
 import MySQL
 
 public class Location {
@@ -73,3 +74,4 @@ public class Location {
                   City(latitude: 41.895466, longitude: 12.482324, name: "Rome", asciiname: "Rome", code: "IT").self]
     
 }
+*/
