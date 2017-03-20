@@ -1,3 +1,4 @@
+/*
 public class City {
     
     private var latitude: Double
@@ -50,3 +51,4 @@ public class City {
     }
     
 }
+*/

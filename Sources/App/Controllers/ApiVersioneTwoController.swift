@@ -19,11 +19,17 @@ final class ApiVersioneTwoController {
     
     func addRoutes(drop: Droplet) {
         let api = drop.grouped("api/v2")
-        api.get("numbers", String.self, String.self, handler: numbers)
+        api.get("test", handler: test)
+        //api.get("numbers", String.self, String.self, handler: numbers)
+    }
+    
+    func test(request: Request) throws -> ResponseRepresentable {
+        return "Test"
     }
     
     // MARK: /api/v2/numbers/:latitude/:longitude
     // this method will return the emergency numbers of the country
+    /*
     func numbers(request: Request, latitude: String, longitude: String) throws -> ResponseRepresentable {
         if let lat = Double(latitude), let lon = Double(longitude) {
             let city = Location(latitude: lat, longitude: lon).usingDatabase(host: DataBase.Host, user: DataBase.User, password: DataBase.Password, database: DataBase.Database).getClosestCity()
@@ -31,7 +37,7 @@ final class ApiVersioneTwoController {
         }
         throw Abort.custom(status: .badRequest, message: "Please provide real location")
     }
-    
+    */
     // MARK: /api/v2/city/:latitude/:longitude
     // this method will return the closest city
     
