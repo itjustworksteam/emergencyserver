@@ -10,12 +10,27 @@ struct Country {
 
 extension Country {
     
-    func makeJson() -> String {
-        return "{\"name\":\"\(self.name)\", \"code\":\"\(self.code)\", \"police\":\"\(self.police)\", \"medical\":\"\(self.medical)\", \"fire\":\"\(self.fire)\"}"
+    func makeJson(withClosestCity closestCity: String?) -> String {
+        var response = ""
+        response += "{\"name\":\"\(self.name)\", \"code\":\"\(self.code)\", \"police\":\"\(self.police)\", \"medical\":\"\(self.medical)\", \"fire\":\"\(self.fire)\""
+        if closestCity != nil {
+            response += ", \"closestcity\":\"\(closestCity!)\""
+        }
+        response += "}"
+        return response
     }
 }
 
 public class DataSource {
+    
+    public func getCountryWithCountryCode(_ countryCode: String, andClosestCity closestCity:String) -> String {
+        let uppercasedCountryCode = countryCode.uppercased()
+        let country = source.filter { $0.code == uppercasedCountryCode }
+        guard let result = country.first else {
+            return "{\"error\":\"No country found with the given 2-letter country code \(countryCode)\"}"
+        }
+        return result.makeJson(withClosestCity: closestCity)
+    }
     
     public func getCountryWithCountryCode(_ countryCode: String) -> String {
         let uppercasedCountryCode = countryCode.uppercased()
@@ -23,7 +38,7 @@ public class DataSource {
         guard let result = country.first else {
             return "{\"error\":\"No country found with the given 2-letter country code \(countryCode)\"}"
         }
-        return result.makeJson()
+        return result.makeJson(withClosestCity: nil)
     }
     
     public init() {
@@ -33,7 +48,7 @@ public class DataSource {
     public func getAll() -> String {
         var output = "["
         for i in 0..<source.count {
-            output += source[i].makeJson()
+            output += source[i].makeJson(withClosestCity: nil)
             if i == (source.count - 1) {
                 
             } else {
