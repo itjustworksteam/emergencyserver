@@ -25,7 +25,7 @@ Request: GET ```/api/45.650433/9.197645```
 Response:
 
 ```
-{"code":"IT","fire":"115","police":"113","name":"Italy","medical":"118"}
+{"name":"Italy", "code":"IT", "police":"113", "medical":"118", "fire":"115", "closestcity":"Seregno"}
 ```
 
 GET ```/api/all```
