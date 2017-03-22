@@ -24,21 +24,20 @@ extension Country {
 public class DataSource {
     
     public func getCountryWithCountryCode(_ countryCode: String, andClosestCity closestCity:String) -> String {
-        let uppercasedCountryCode = countryCode.uppercased()
-        let country = source.filter { $0.code == uppercasedCountryCode }
-        guard let result = country.first else {
-            return "{\"error\":\"No country found with the given 2-letter country code \(countryCode)\"}"
-        }
-        return result.makeJson(withClosestCity: closestCity)
+        return getWithCode(countryCode, andCity: closestCity)
     }
     
     public func getCountryWithCountryCode(_ countryCode: String) -> String {
-        let uppercasedCountryCode = countryCode.uppercased()
+        return getWithCode(countryCode, andCity: nil)
+    }
+    
+    private func getWithCode(_ code: String, andCity city: String?) -> String {
+        let uppercasedCountryCode = code.uppercased()
         let country = source.filter { $0.code == uppercasedCountryCode }
         guard let result = country.first else {
-            return "{\"error\":\"No country found with the given 2-letter country code \(countryCode)\"}"
+            return "{\"error\":\"No country found with the given 2-letter country code \(code)\"}"
         }
-        return result.makeJson(withClosestCity: nil)
+        return result.makeJson(withClosestCity: city)
     }
     
     public init() {
