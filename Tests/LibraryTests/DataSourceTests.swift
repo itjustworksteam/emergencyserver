@@ -16,7 +16,7 @@ class DataSourceTests: XCTestCase {
         let response = DataSource().getCountryWithCountryCode("hj")
         XCTAssertEqual(response, "{\"error\":\"No country found with the given 2-letter country code hj\"}")
     }
-    
+        
     func testEqualResponseForCountryInUpperOrLowerCase() {
         let uppercase = DataSource().getCountryWithCountryCode("IT")
         let lowercase = DataSource().getCountryWithCountryCode("it")

@@ -31,11 +31,15 @@ public class DataSource {
         return getWithCode(countryCode, andCity: nil)
     }
     
+    class func errorWithCountryCode(_ code:String) -> String {
+        return "{\"error\":\"No country found with the given 2-letter country code \(code)\"}"
+    }
+    
     private func getWithCode(_ code: String, andCity city: String?) -> String {
         let uppercasedCountryCode = code.uppercased()
         let country = source.filter { $0.code == uppercasedCountryCode }
         guard let result = country.first else {
-            return "{\"error\":\"No country found with the given 2-letter country code \(code)\"}"
+            return DataSource.errorWithCountryCode(code)
         }
         return result.makeJson(withClosestCity: city)
     }
