@@ -28,18 +28,21 @@ final class ApiVersioneOneController {
     
     // MARK: /api/:latitude/:longitude
     func getWithLatitudeAndLongitude(request: Request, latitude: String, longitude: String) throws -> ResponseRepresentable {
-        let response = try drop.client.get(createUrlWithLatitude(latitude, andLongitude: longitude))
+        let response = try drop.client.get(Emergency.createUrlWithLatitude(latitude, andLongitude: longitude))
         if let countrycode = response.data["countrycode"]?.string, let city = response.data["city"]?.string {
             return DataSource().getCountryWithCountryCode(countrycode, andClosestCity: city)
         }
-        return noLocationFoundError()
+        return Emergency.noLocationFoundError()
     }
-    
-    private func createUrlWithLatitude(_ latitude: String, andLongitude longitude: String) -> String {
+}
+
+public struct Emergency {
+    public static func createUrlWithLatitude(_ latitude: String, andLongitude longitude: String) -> String {
         return "http://scatter-otl.rhcloud.com/location?lat=\(latitude)&long=\(longitude)"
     }
     
-    private func noLocationFoundError() -> String {
+    public static func noLocationFoundError() -> String {
         return "{\"error\":\"Sorry cannot get your location. Retry!\"}"
     }
+
 }
