@@ -6,8 +6,11 @@ final class ApiVersioneOneController {
     
     func addRoutes(drop: Droplet) {
         let api = drop.grouped("api")
+        // GET /api/all
         api.get("all", handler: getAll)
+        // GET /api/:country
         api.get(String.self, handler: getWithCountryCode)
+        // GET /api/:latitude/:longitude
         api.get(String.self, String.self, handler: getWithLatitudeAndLongitude)
     }
     

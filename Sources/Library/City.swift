@@ -1,54 +1,51 @@
-/*
 public class City {
     
-    private var latitude: Double
-    private var longitude: Double
-    private var name: String?
-    private var asciiname: String?
-    private var code: String?
+    public var latitude: Double {
+        get {
+            return self._latitude
+        }
+    }
+    private var _latitude: Double
+    public var longitude: Double {
+        get {
+            return self._longitude
+        }
+    }
+    private var _longitude: Double
+    public var name: String? {
+        get {
+            return self._name
+        }
+    }
+    private var _name: String?
+    public var code: String? {
+        get {
+            return self._code
+        }
+    }
+    private var _code: String?
     
     init(latitude: Double, longitude: Double) {
-        self.latitude = latitude
-        self.longitude = longitude
+        self._latitude = latitude
+        self._longitude = longitude
     }
     
-    convenience init(latitude: Double, longitude: Double, name: String, asciiname: String, code: String) {
+    convenience init(latitude: Double, longitude: Double, name: String, code: String) {
         self.init(latitude: latitude, longitude: longitude)
-        self.name = name
-        self.asciiname = asciiname
-        self.code = code
+        self._name = name
+        self._code = code
     }
     
-    public func getCode() -> String {
-        return self.code != nil ? self.code! : "not found"
-    }
-    
-    public func getName() -> String {
-        return self.name != nil ? self.name! : "not found"
-    }
-    
-    public func getAsciiName() -> String {
-        return self.asciiname != nil ? self.asciiname! : "not found"
-    }
-    
-    public func getLatitude() -> Double {
-        return self.latitude
-    }
-    
-    public func getLongitude() -> Double {
-        return self.longitude
-    }
     
     public func makeJson() -> String {
-        if self.name != nil && self.asciiname != nil && self.code != nil {
-            return "{\"name\": \"\(self.name!)\", \"asciiname\": \"\(self.asciiname!)\", \"code\": \"\(self.code!)\", \"latitude\": \"\(self.latitude)\", \"longitude\": \"\(self.longitude)\"}"
+        if self._name != nil && self._code != nil {
+            return "{\"latitude\":\(self.latitude),\"longitude\":\(self.longitude),\"city\":\"\(self._name!)\",\"code\":\"\(self._code!)\"}"
         }
-        return "{\"latitude\": \"\(self.latitude)\", \"longitude\": \"\(self.longitude)\"}"
+        return "{\"latitude\":\(self.latitude),\"longitude\":\(self.longitude)}"
     }
     
-    func distanceToCity(city: City) -> Double {
+    func distanceToCity(_ city: City) -> Double {
         return Utils.disgeod(latA: self.latitude, lonA: self.longitude, latB: city.latitude, lonB: city.longitude)
     }
     
 }
-*/
