@@ -6,6 +6,7 @@
     <body>
         <h1 align="center">Emergency Server API</h1>
         <div class="container" style="width: 80%; margin: 0 auto;">
+            <h2 align="center">API Version 1 (Deprecated)</h2>
             <h3>GET /api/all</h3>
             <p>Return a JSON array with Country objects.</p>
             <p><b>Country</b></p>
@@ -45,6 +46,12 @@
             <p>Return a JSON object with a Country object if found else it will return this JSON: {"error":"No country found with the given 2-letter country code hj"}</p>
             <h3>GET /api/:latitude/:longitude</h3>
             <p>Return a JSON object with a Country object if found else it will return this JSON: {"error":"Sorry cannot get your location. Retry!"}</p>
+            <br /><br />
+            <h2 align="center">API Version 2 (Default)</h2>
+            <h3>GET /api/v2/numbers/all</h3>
+            <h3>GET /api/v2/numbers/:country</h3>
+            <h3>GET /api/v2/numbers/:latitude/:longitude  --> return also a city field that is the closest city to this location</h3>
+            <p>These API are the same as the above</p>
         </div>
     </body>
 </html>
