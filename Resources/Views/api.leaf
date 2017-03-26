@@ -1,0 +1,22 @@
+#extend("master")
+
+#export("head") {
+    <title>Emergency Server API</title>
+}
+
+#export("body") {
+    <h1 align="center">Emergency Server API</h1>
+    <div class="container" style="width: 80%; margin: 0 auto;">
+        <h2 align="center">API Version 1 (Deprecated)</h2>
+        #loop(apiOnes, "apiOne") {
+            <h3>#(apiOne.endpoint) <small><a href="#(apiOne.example)">Try!</a></small></h3>
+            <p>#(apiOne.description)</p>
+        }
+        <br /><br />
+        <h2 align="center">API Version 2 (Default)</h2>
+        #loop(apiTwos, "apiTwo") {
+            <h3>#(apiTwo.endpoint) <small><a href="#(apiTwo.example)">Try!</a></small></h3>
+            <p>#(apiTwo.description)</p>
+        }
+    </div>
+}
