@@ -11,7 +11,7 @@ final class UserInterfaceController {
     
     // MARK: Index Page
     func index(request: Request) throws -> ResponseRepresentable {
-        return Response(redirect: "/developers")
+        return try drop.view.make("index")
     }
     
     private let DEFAULT_URL = "https://emergency-server.herokuapp.com"
