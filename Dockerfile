@@ -4,5 +4,4 @@ WORKDIR /vapor
 ADD . /vapor
 EXPOSE 80
 RUN swift build
-RUN swift test
 CMD .build/debug/App --workdir=./ --config:servers.http.port=80

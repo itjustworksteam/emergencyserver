@@ -5,13 +5,16 @@ import Library
 final class ApiVersionTwoController {
     
     func addRoutes(drop: Droplet){
+        // /api/v2
         let v2 = drop.grouped("api/v2")
+        // /api/v2/numbers
         let numbers = v2.grouped("numbers")
         numbers.get("all", handler: getAll)
         numbers.get(String.self, handler: getWithCountryCode)
         numbers.get(String.self, String.self, handler: getWithLatitudeAndLongitude)
     }
     
+    // MARK: Version Two Numbers
     // GET /api/v2/numbers/all
     func getAll(request: Request) throws -> ResponseRepresentable {
         return DataSource().getAll()
