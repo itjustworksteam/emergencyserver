@@ -6,7 +6,7 @@ import Library
 let drop = Droplet()
 
 // MARK: If Debug mode is On
-(drop.view as? LeafRenderer)?.stem.cache = nil
+//(drop.view as? LeafRenderer)?.stem.cache = nil
 
 // MARK: User Interface
 let userInterface = UserInterfaceController()
