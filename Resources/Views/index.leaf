@@ -1,0 +1,60 @@
+#extend("master")
+
+#export("title") {
+    <title>Emergency Server</title>
+}
+
+#export("body") {
+    <h1 align="center">Emergency Server</h1>
+    <div class="container">
+        <p align="center">This service is used to get the emergency numbers of a country.</p>
+        
+        <h3>Clients:</h3>
+        <table class="u-full-width"
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Available</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Telegram Bot</td>
+                    <td>Available <a href="_blank" href="https://telegram.me/emergencynumbersbot">here</a></td>
+                </tr>
+                <tr>
+                    <td>Facebook Bot</td>
+                    <td>Not available</td>
+                </tr>
+                <tr>
+                    <td>Android App</td>
+                    <td>Not available</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Developers:</h3>
+        <table class="u-full-width">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Emergency Server API</td>
+                    <td><a href="/developers">Click Here</a></td>
+                </tr>
+                <tr>
+                    <td>Emergency Server Repository</td>
+                    <td><a target="_blank" href="https://github.com/itjustworksteam/emergencyserver">Click here</a></td>
+                </tr>
+                <tr>
+                    <td>Emergency Telegram Bot Repository</td>
+                    <td><a target="_blank" href="https://github.com/itjustworksteam/emergencybot">Click Here</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,46 @@
+#extend("master")
+
+#export("title") {
+    <title>Emergency Server API</title>
+}
+
+#export("body") {
+    <h1 align="center">Emergency Server API</h1>
+    <div class="container">
+        <h4 align="center">API Version 1 (Deprecated)</h4>
+        <table class="u-full-width">
+            <thead>
+                <th>Endpoint</th>
+                <th>Description</th>
+                <th>Example</th>
+            </thead>
+            <tbody>
+                #loop(apiOnes, "apiOne") {
+                    <tr>
+                        <td>#(apiOne.endpoint)</td>
+                        <td>#(apiOne.description)</td>
+                        <td><a href="#(apiOne.example)">Try!</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <h4 align="center">API Version 2 (Default)</h4>
+        <table class="u-full-width">
+            <thead>
+                <th>Endpoint</th>
+                <th>Description</th>
+                <th>Example</th>
+            </thead>
+            <tbody>
+                #loop(apiTwos, "apiTwo") {
+                <tr>
+                    <td>#(apiTwo.endpoint)</td>
+                    <td>#(apiTwo.description)</td>
+                    <td><a href="#(apiTwo.example)">Try!</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
