@@ -6,17 +6,55 @@
 
 #export("body") {
     <h1 align="center">Emergency Server</h1>
-    <div class="container" style="width: 80%; margin: 0 auto;">
-        <p>This service is used to get the emergency numbers of a country.</p>
+    <div class="container">
+        <p align="center">This service is used to get the emergency numbers of a country.</p>
         
         <h3>Clients:</h3>
-        <p>Telegram Bot <small>You can find it <a target="_blank" href="https://telegram.me/emergencynumbersbot">here</a></small></p>
-        <p>Facebook Bot <small style="color: red">Not Available right now</small></p>
-        <p>Android App <small style="color: red">Not Available right now</small></p>
-    
+        <table class="u-full-width"
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Available</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Telegram Bot</td>
+                    <td>Available <a href="_blank" href="https://telegram.me/emergencynumbersbot">here</a></td>
+                </tr>
+                <tr>
+                    <td>Facebook Bot</td>
+                    <td>Not available</td>
+                </tr>
+                <tr>
+                    <td>Android App</td>
+                    <td>Not available</td>
+                </tr>
+            </tbody>
+        </table>
+        
         <h3>Developers:</h3>
-        <p>Official Emergency Server API <small>You can find it <a target="_blank" href="/developers">here</a></small></p>
-        <p>Emergency Server Repo <small>You can find it <a target="_blank" href="https://github.com/itjustworksteam/emergencyserver">here</a></small></p>
-        <p>Emergency Telegram Bot Repo <small>You can find it <a target="_blank" href="https://github.com/itjustworksteam/emergencybot">here</a></small></p>
+        <table class="u-full-width">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Emergency Server API</td>
+                    <td><a href="/developers">Click Here</a></td>
+                </tr>
+                <tr>
+                    <td>Emergency Server Repository</td>
+                    <td><a target="_blank" href="https://github.com/itjustworksteam/emergencyserver">Click here</a></td>
+                </tr>
+                <tr>
+                    <td>Emergency Telegram Bot Repository</td>
+                    <td><a target="_blank" href="https://github.com/itjustworksteam/emergencybot">Click Here</a></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 }
