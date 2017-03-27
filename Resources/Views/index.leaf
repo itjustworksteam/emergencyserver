@@ -20,7 +20,7 @@
             <tbody>
                 <tr>
                     <td>Telegram Bot</td>
-                    <td>Available <a href="_blank" href="https://telegram.me/emergencynumbersbot">here</a></td>
+                    <td>Available <a target="_blank" href="https://telegram.me/emergencynumbersbot">here</a></td>
                 </tr>
                 <tr>
                     <td>Facebook Bot</td>
