@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    #import("head")
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/normalize.css">
+    <link rel="stylesheet" href="/styles/skeleton.css">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    #import("title")
 </head>
 <body>
     #import("body")

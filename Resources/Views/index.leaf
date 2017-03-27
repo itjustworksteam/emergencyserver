@@ -1,6 +1,6 @@
 #extend("master")
 
-#export("head") {
+#export("title") {
     <title>Emergency Server</title>
 }
 
@@ -15,7 +15,7 @@
         <p>Android App <small style="color: red">Not Available right now</small></p>
     
         <h3>Developers:</h3>
-        <p>Official Emergency Server API <small>You can find it <a target="_blank" href="https://emergency-server.herokuapp.com/developers">here</a></small></p>
+        <p>Official Emergency Server API <small>You can find it <a target="_blank" href="/developers">here</a></small></p>
         <p>Emergency Server Repo <small>You can find it <a target="_blank" href="https://github.com/itjustworksteam/emergencyserver">here</a></small></p>
         <p>Emergency Telegram Bot Repo <small>You can find it <a target="_blank" href="https://github.com/itjustworksteam/emergencybot">here</a></small></p>
     </div>

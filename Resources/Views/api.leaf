@@ -1,6 +1,6 @@
 #extend("master")
 
-#export("head") {
+#export("title") {
     <title>Emergency Server API</title>
 }
 
