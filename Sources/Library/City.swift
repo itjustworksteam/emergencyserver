@@ -1,4 +1,11 @@
-public class City {
+public class City: CustomStringConvertible {
+    
+    public var description: String {
+        if self.name != nil && self.code != nil {
+            return "City={latitude=\(self.latitude), longitude=\(self.longitude), name=\(self.name!), code=\(self.code!)}"
+        }
+        return "City={latitude=\(self.latitude), longitude=\(self.longitude)}"
+    }
     
     public var latitude: Double {
         get {

@@ -8,7 +8,11 @@ struct Country {
     let fire: String
 }
 
-extension Country {
+extension Country: CustomStringConvertible {
+    
+    public var description: String {
+        return "Country={name=\(self.name), code=\(self.code), police=\(self.police), medical=\(self.medical), fire=\(self.fire)}"
+    }
     
     func makeJson(withClosestCity closestCity: String?) -> String {
         var response = ""
