@@ -33,6 +33,11 @@ class DataSourceTests: XCTestCase {
         XCTAssertEqual(response, "{\"name\":\"Italy\", \"code\":\"IT\", \"police\":\"113\", \"medical\":\"118\", \"fire\":\"115\", \"closestcity\":\"Seregno\"}")
     }
     
+    func testCustomStringConvertible() {
+        let country = Country(name: "Italy", code: "IT", police: "112", medical: "118", fire: "115")
+        XCTAssertEqual("Country={name=Italy, code=IT, police=112, medical=118, fire=115}", "\(country)")
+    }
+    
     func getAllOutput() -> String {
         return DataSource().getAll()
     }
@@ -44,7 +49,8 @@ class DataSourceTests: XCTestCase {
 			("testGetNumbersFromCountryCodeError", testGetNumbersFromCountryCodeError),
 			("testEqualResponseForCountryInUpperOrLowerCase", testEqualResponseForCountryInUpperOrLowerCase),
 			("testGetAllResults", testGetAllResults),
-			("testClosestCity", testClosestCity)
+			("testClosestCity", testClosestCity),
+			("testCustomStringConvertible", testCustomStringConvertible),
 		]
 	}
 }
