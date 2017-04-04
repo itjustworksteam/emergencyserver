@@ -1,8 +1,6 @@
 os: ubuntu14
 language: swiftenv
 script:
-  - apt-get update
-  - swiftenv install 3.0
-  - swiftenv global 3.0
+  - swiftenv install -s
   - swift build
   - swift test
