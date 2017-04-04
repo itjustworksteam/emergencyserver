@@ -32,12 +32,12 @@ public class City: CustomStringConvertible {
     }
     private var _code: String?
     
-    init(latitude: Double, longitude: Double) {
+    public init(latitude: Double, longitude: Double) {
         self._latitude = latitude
         self._longitude = longitude
     }
     
-    convenience init(latitude: Double, longitude: Double, name: String, code: String) {
+    public convenience init(latitude: Double, longitude: Double, name: String, code: String) {
         self.init(latitude: latitude, longitude: longitude)
         self._name = name
         self._code = code
