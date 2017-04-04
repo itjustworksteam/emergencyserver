@@ -4,7 +4,16 @@ import Library
 
 final class ApiVersioneOneController {
     
+    private var logger: LogProtocol?
+    
+    private func logMessage(_ message: String) {
+        if self.logger != nil {
+            self.logger?.debug(message)
+        }
+    }
+    
     func addRoutes(drop: Droplet) {
+        self.logger = drop.log
         let api = drop.grouped("api")
         // GET /api/all
         api.get("all", handler: getAll)
@@ -16,12 +25,16 @@ final class ApiVersioneOneController {
     
     // MARK: /api/all
     func getAll(request: Request) throws -> ResponseRepresentable {
-        return DataSource().getAll()
+        let response = DataSource().getAll()
+        logMessage(response)
+        return response
     }
     
     // MARK: /api/:country
     func getWithCountryCode(request: Request, country: String) throws -> ResponseRepresentable {
-        return DataSource().getCountryWithCountryCode(country)
+        let response = DataSource().getCountryWithCountryCode(country)
+        logMessage(response)
+        return response
     }
     
     // http://scatter-otl.rhcloud.com/location?lat=45.650433&long=9.197645
@@ -29,9 +42,13 @@ final class ApiVersioneOneController {
     // MARK: /api/:latitude/:longitude
     func getWithLatitudeAndLongitude(request: Request, latitude: String, longitude: String) throws -> ResponseRepresentable {
         let response = try drop.client.get(Emergency.createUrlWithLatitude(latitude, andLongitude: longitude))
+        logMessage(response.description)
         if let countrycode = response.data["countrycode"]?.string, let city = response.data["city"]?.string {
-            return DataSource().getCountryWithCountryCode(countrycode, andClosestCity: city)
+            let reply = DataSource().getCountryWithCountryCode(countrycode, andClosestCity: city)
+            logMessage(reply)
+            return reply
         }
+        logMessage(Emergency.noLocationFoundError())
         return Emergency.noLocationFoundError()
     }
 }

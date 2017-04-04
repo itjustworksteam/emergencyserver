@@ -1,9 +1,16 @@
 import Vapor
 import HTTP
 import Library
+import SwiftyBeaverVapor
+import SwiftyBeaver
+
+// MARK: Configure Logger
+let console = ConsoleDestination()
+let loggerProvider = SwiftyBeaverProvider(destinations: [console])
 
 // MARK: Create Droplet
 let drop = Droplet()
+drop.addProvider(loggerProvider)
 
 // MARK: If Debug mode is On
 //(drop.view as? LeafRenderer)?.stem.cache = nil
