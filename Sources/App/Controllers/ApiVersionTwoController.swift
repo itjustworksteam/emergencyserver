@@ -25,6 +25,18 @@ final class ApiVersionTwoController {
         // /api/v2/city
         let city = v2.grouped("city")
         city.get(String.self, String.self, handler: getClosestCity)
+        
+        // /api/v2/police
+        let police = v2.grouped("police")
+        police.get(String.self, handler: getPoliceWithCountryCode)
+        
+        // /api/v2/fire
+        let fire = v2.grouped("fire")
+        fire.get(String.self, handler: getFireWithCountryCode)
+        
+        // /api/v2/medical
+        let medical = v2.grouped("medical")
+        medical.get(String.self, handler: getMedicalWithCountryCode)
     }
     
     // MARK: Version Two Numbers
@@ -67,4 +79,29 @@ final class ApiVersionTwoController {
         logMessage(Emergency.noLocationFoundError())
         return Emergency.noLocationFoundError()
     }
+    
+    // GET /api/v2/police/:country
+    func getPoliceWithCountryCode(request: Request, code: String) throws -> ResponseRepresentable {
+        let response = DataSource().getPoliceNumberWithCountryCode(code)
+        logMessage(response)
+        return response
+    }
+    
+    // GET /api/v2/police/:latitude/:longitude
+    // GET /api/v2/fire/:country
+    func getFireWithCountryCode(request: Request, code: String) throws -> ResponseRepresentable {
+        let response = DataSource().getFireNumberWithCountryCode(code)
+        logMessage(response)
+        return response
+    }
+    
+    // GET /api/v2/fire/:latitude/:longitude
+    // GET /api/v2/medical/:country
+    func getMedicalWithCountryCode(request: Request, code: String) throws -> ResponseRepresentable {
+        let response = DataSource().getMedicalNumberWithCountryCode(code)
+        logMessage(response)
+        return response
+    }
+    
+    // GET /api/v2/medical/:latitude/:longitude
 }
