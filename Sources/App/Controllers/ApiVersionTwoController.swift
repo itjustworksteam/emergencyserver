@@ -21,6 +21,10 @@ final class ApiVersionTwoController {
         numbers.get("all", handler: getAll)
         numbers.get(String.self, handler: getWithCountryCode)
         numbers.get(String.self, String.self, handler: getWithLatitudeAndLongitude)
+        
+        // /api/v2/city
+        let city = v2.grouped("city")
+        city.get(String.self, String.self, handler: getClosestCity)
     }
     
     // MARK: Version Two Numbers
@@ -46,6 +50,19 @@ final class ApiVersionTwoController {
             let reply = DataSource().getCountryWithCountryCode(countryCode, andClosestCity: city)
             logMessage(reply)
             return reply
+        }
+        logMessage(Emergency.noLocationFoundError())
+        return Emergency.noLocationFoundError()
+    }
+    
+    // GET /api/v2/city/:latitude/:longitude
+    func getClosestCity(request: Request, latitude: String, longitude: String) throws -> ResponseRepresentable {
+        let response = try drop.client.get(Emergency.createUrlWithLatitude(latitude, andLongitude: longitude))
+        logMessage(response.description)
+        if let countrycode = response.data["countrycode"]?.string, let city = response.data["city"]?.string, let lat = response.data["latitude"]?.double, let lon = response.data["longitude"]?.double {
+            let reply = City(latitude: lat, longitude: lon, name: city, code: countrycode)
+            logMessage(reply.description)
+            return reply.makeJson()
         }
         logMessage(Emergency.noLocationFoundError())
         return Emergency.noLocationFoundError()

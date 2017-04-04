@@ -27,7 +27,8 @@ final class UserInterfaceController {
         let apiTwos = try [
             ["endpoint":"GET /api/v2/numbers/all", "description":"Return a JSON array with Country objects.", "example":"/api/v2/numbers/all"].makeNode(),
             ["endpoint":"GET /api/v2/numbers/:country", "description":"Return a JSON object with a Country object.", "example":"/api/v2/numbers/it"].makeNode(),
-            ["endpoint":"GET /api/v2/numbers/:latitude/:longitude", "description":"Return a JSON object with a Country object plus a \"closestcity\" field that is the closest city.", "example":"/api/v2/numbers/45.0/9.0"].makeNode()
+            ["endpoint":"GET /api/v2/numbers/:latitude/:longitude", "description":"Return a JSON object with a Country object plus a \"closestcity\" field that is the closest city.", "example":"/api/v2/numbers/45.0/9.0"].makeNode(),
+            ["endpoint":"GET /api/v2/city/:latitude/:longitude", "description":"Return a JSON object with a City object", "example":"/api/v2/city/45.0/9.0"].makeNode()
             ].makeNode()
         
         return try drop.view.make("api", Node(["apiOnes":apiOnes, "apiTwos":apiTwos]))
