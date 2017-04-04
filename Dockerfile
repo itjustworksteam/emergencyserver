@@ -1,5 +1,5 @@
 FROM therickys93/ubuntu14swiftenv
-RUN swiftenv install 3.0 && swiftenv global 3.0
+RUN swiftenv install
 WORKDIR /vapor
 ADD . /vapor
 EXPOSE 80
