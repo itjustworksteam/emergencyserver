@@ -1,6 +1,6 @@
 os: ubuntu14
 language: swiftenv
 script:
-  - swiftenv install
+  - swiftenv install $(cat .swift-version)
   - swift build
   - swift test
