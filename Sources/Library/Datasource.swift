@@ -39,6 +39,36 @@ public class DataSource {
         return "{\"error\":\"No country found with the given 2-letter country code \(code)\"}"
     }
     
+    public func getPoliceNumberWithCountryCode(_ code: String) -> String {
+        if let country = getCountryObjectWithCode(code) {
+            return "{\"police\":\"\(country.police)\"}"
+        }
+        return DataSource.errorWithCountryCode(code)
+    }
+    
+    public func getMedicalNumberWithCountryCode(_ code: String) -> String {
+        if let country = getCountryObjectWithCode(code) {
+            return "{\"medical\":\"\(country.medical)\"}"
+        }
+        return DataSource.errorWithCountryCode(code)
+    }
+    
+    public func getFireNumberWithCountryCode(_ code: String) -> String {
+        if let country = getCountryObjectWithCode(code) {
+            return "{\"fire\":\"\(country.fire)\"}"
+        }
+        return DataSource.errorWithCountryCode(code)
+    }
+    
+    private func getCountryObjectWithCode(_ code: String) -> Country? {
+        let uppercasedCountryCode = code.uppercased()
+        let country = source.filter { $0.code == uppercasedCountryCode }
+        guard let result = country.first else {
+            return nil
+        }
+        return result
+    }
+    
     private func getWithCode(_ code: String, andCity city: String?) -> String {
         let uppercasedCountryCode = code.uppercased()
         let country = source.filter { $0.code == uppercasedCountryCode }

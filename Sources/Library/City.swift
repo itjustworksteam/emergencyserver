@@ -2,9 +2,9 @@ public class City: CustomStringConvertible {
     
     public var description: String {
         if self.name != nil && self.code != nil {
-            return "City={latitude=\(self.latitude), longitude=\(self.longitude), name=\(self.name!), code=\(self.code!)}"
+            return "City={latitude=\"\(self.latitude)\", longitude=\"\(self.longitude)\", name=\(self.name!), code=\(self.code!)}"
         }
-        return "City={latitude=\(self.latitude), longitude=\(self.longitude)}"
+        return "City={latitude=\"\(self.latitude)\", longitude=\"\(self.longitude)\"}"
     }
     
     public var latitude: Double {
@@ -46,9 +46,9 @@ public class City: CustomStringConvertible {
     
     public func makeJson() -> String {
         if self._name != nil && self._code != nil {
-            return "{\"latitude\":\(self.latitude),\"longitude\":\(self.longitude),\"city\":\"\(self._name!)\",\"code\":\"\(self._code!)\"}"
+            return "{\"latitude\":\"\(self.latitude)\",\"longitude\":\"\(self.longitude)\",\"city\":\"\(self._name!)\",\"code\":\"\(self._code!)\"}"
         }
-        return "{\"latitude\":\(self.latitude),\"longitude\":\(self.longitude)}"
+        return "{\"latitude\":\"\(self.latitude)\",\"longitude\":\"\(self.longitude)\"}"
     }
     
     func distanceToCity(_ city: City) -> Double {

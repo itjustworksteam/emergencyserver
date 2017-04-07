@@ -25,6 +25,21 @@ final class ApiVersionTwoController {
         // /api/v2/city
         let city = v2.grouped("city")
         city.get(String.self, String.self, handler: getClosestCity)
+        
+        // /api/v2/police
+        let police = v2.grouped("police")
+        police.get(String.self, handler: getPoliceWithCountryCode)
+        police.get(String.self, String.self, handler: getPoliceWithLatitudeAndLongitude)
+        
+        // /api/v2/fire
+        let fire = v2.grouped("fire")
+        fire.get(String.self, handler: getFireWithCountryCode)
+        fire.get(String.self, String.self, handler: getFireWithLatitudeAndLongitude)
+        
+        // /api/v2/medical
+        let medical = v2.grouped("medical")
+        medical.get(String.self, handler: getMedicalWithCountryCode)
+        medical.get(String.self, String.self, handler: getMedicalWithLatitudeAndLongitude)
     }
     
     // MARK: Version Two Numbers
@@ -63,6 +78,66 @@ final class ApiVersionTwoController {
             let reply = City(latitude: lat, longitude: lon, name: city, code: countrycode)
             logMessage(reply.description)
             return reply.makeJson()
+        }
+        logMessage(Emergency.noLocationFoundError())
+        return Emergency.noLocationFoundError()
+    }
+    
+    // GET /api/v2/police/:country
+    func getPoliceWithCountryCode(request: Request, code: String) throws -> ResponseRepresentable {
+        let response = DataSource().getPoliceNumberWithCountryCode(code)
+        logMessage(response)
+        return response
+    }
+    
+    // GET /api/v2/police/:latitude/:longitude
+    func getPoliceWithLatitudeAndLongitude(request: Request, latitude: String, longitude: String) throws -> ResponseRepresentable {
+        let response = try drop.client.get(Emergency.createUrlWithLatitude(latitude, andLongitude: longitude))
+        logMessage(response.description)
+        if let code = response.data["countrycode"]?.string {
+            let reply = DataSource().getPoliceNumberWithCountryCode(code)
+            logMessage(reply)
+            return reply
+        }
+        logMessage(Emergency.noLocationFoundError())
+        return Emergency.noLocationFoundError()
+    }
+    
+    // GET /api/v2/fire/:country
+    func getFireWithCountryCode(request: Request, code: String) throws -> ResponseRepresentable {
+        let response = DataSource().getFireNumberWithCountryCode(code)
+        logMessage(response)
+        return response
+    }
+    
+    // GET /api/v2/fire/:latitude/:longitude
+    func getFireWithLatitudeAndLongitude(request: Request, latitude: String, longitude: String) throws -> ResponseRepresentable {
+        let response = try drop.client.get(Emergency.createUrlWithLatitude(latitude, andLongitude: longitude))
+        logMessage(response.description)
+        if let code = response.data["countrycode"]?.string {
+            let reply = DataSource().getFireNumberWithCountryCode(code)
+            logMessage(reply)
+            return reply
+        }
+        logMessage(Emergency.noLocationFoundError())
+        return Emergency.noLocationFoundError()
+    }
+    
+    // GET /api/v2/medical/:country
+    func getMedicalWithCountryCode(request: Request, code: String) throws -> ResponseRepresentable {
+        let response = DataSource().getMedicalNumberWithCountryCode(code)
+        logMessage(response)
+        return response
+    }
+    
+    // GET /api/v2/medical/:latitude/:longitude
+    func getMedicalWithLatitudeAndLongitude(request: Request, latitude: String, longitude: String) throws -> ResponseRepresentable {
+        let response = try drop.client.get(Emergency.createUrlWithLatitude(latitude, andLongitude: longitude))
+        logMessage(response.description)
+        if let code = response.data["countrycode"]?.string {
+            let reply = DataSource().getMedicalNumberWithCountryCode(code)
+            logMessage(reply)
+            return reply
         }
         logMessage(Emergency.noLocationFoundError())
         return Emergency.noLocationFoundError()

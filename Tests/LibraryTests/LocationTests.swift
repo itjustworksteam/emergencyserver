@@ -61,23 +61,23 @@ class LocationTests: XCTestCase {
     
     func testCustomStringConvertibleLong(){
         let milan = City(latitude: 45.463688, longitude: 9.188141, name: "Milan", code: "IT")
-        XCTAssertEqual("City={latitude=45.463688, longitude=9.188141, name=Milan, code=IT}", "\(milan)")
+        XCTAssertEqual("City={latitude=\"45.463688\", longitude=\"9.188141\", name=Milan, code=IT}", "\(milan)")
     }
     
     func testCustomStringConvertibleShort() {
         let milan = City(latitude: 45.463688, longitude: 9.188141)
-        XCTAssertEqual("City={latitude=45.463688, longitude=9.188141}", "\(milan)")
+        XCTAssertEqual("City={latitude=\"45.463688\", longitude=\"9.188141\"}", "\(milan)")
     }
     
     private func jsonWithAll() -> String {
         var response = ""
-        response += "{\"latitude\":45.463688,\"longitude\":9.188141,\"city\":\"Milan\",\"code\":\"IT\"}"
+        response += "{\"latitude\":\"45.463688\",\"longitude\":\"9.188141\",\"city\":\"Milan\",\"code\":\"IT\"}"
         return response
     }
     
     private func jsonWithOnlyLatitudeAndLongitudeResponse() -> String {
         var response = ""
-        response += "{\"latitude\":45.463688,\"longitude\":9.188141}"
+        response += "{\"latitude\":\"45.463688\",\"longitude\":\"9.188141\"}"
         return response
     }
     
