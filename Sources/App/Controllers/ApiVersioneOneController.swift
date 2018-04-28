@@ -37,7 +37,7 @@ final class ApiVersioneOneController {
         return response
     }
     
-    // http://scatter-otl.rhcloud.com/location?lat=45.650433&long=9.197645
+    // https://emergency-server-backend.herokuapp.com/location?lat=36&long=-78.9
     
     // MARK: /api/:latitude/:longitude
     func getWithLatitudeAndLongitude(request: Request, latitude: String, longitude: String) throws -> ResponseRepresentable {
@@ -55,7 +55,7 @@ final class ApiVersioneOneController {
 
 public struct Emergency {
     public static func createUrlWithLatitude(_ latitude: String, andLongitude longitude: String) -> String {
-        return "http://scatter-otl.rhcloud.com/location?lat=\(latitude)&long=\(longitude)"
+        return "https://emergency-server-backend.herokuapp.com/location?lat=\(latitude)&long=\(longitude)"
     }
     
     public static func noLocationFoundError() -> String {
